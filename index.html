@@ -84,11 +84,25 @@
       flex: 1;
       border-radius: 26px;
       background: var(--screen-bg);
-      padding: 10px 8px 8px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       font-size: 12px;
       overflow: hidden;
+    }
+
+    /* Header with contact name */
+
+    .hero-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 6px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #e1e1e6;
+      font-size: 11px;
+      color: #555555;
+      font-weight: 500;
     }
 
     .hero-screen-top {
@@ -126,12 +140,12 @@
       margin-top: 4px;
     }
 
-    /* UPDATED iOS-style keyboard */
+    /* UPDATED iOS-style keyboard – cleaner alignment */
 
     .keyboard {
       background: var(--keyboard-bg);
       border-radius: 14px;
-      padding: 6px 6px 8px;
+      padding: 6px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -143,24 +157,17 @@
       justify-content: center;
     }
 
-    .keyboard-row--indented {
-      padding-left: 10px; /* fake stagger for middle row */
-    }
-
-    .keyboard-row--bottom {
-      padding: 0 4px;
-    }
-
     .key {
       padding: 5px 7px;
       border-radius: 9px;
       background: var(--key-bg);
       border: 1px solid var(--key-border);
       text-align: center;
-      min-width: 16px;
+      min-width: 18px;
       font-size: 10px;
       color: var(--fg);
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      flex: 0 0 auto;
     }
 
     .key--func {
@@ -172,7 +179,7 @@
     }
 
     .key--space {
-      flex: 2.3;
+      flex: 1.8;
       text-transform: lowercase;
     }
 
@@ -329,7 +336,7 @@
   <main class="page">
     <!-- HERO TEXT -->
     <section>
-      <h1>Lets you text your relatives back in their native tone.</h1>
+      <h1>It lets you text your relatives back in their native tone.</h1>
       <p class="subline">
         A custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
       </p>
@@ -338,6 +345,10 @@
       <div class="hero-media">
         <div class="hero-phone">
           <div class="hero-screen">
+            <div class="hero-header">
+              Mom
+            </div>
+
             <div class="hero-screen-top">
               <div class="bubble bubble-incoming">
                 CALL ME WHEN YOU SEE THIS
@@ -346,6 +357,7 @@
                 sURe nO pRObLEm!!
               </div>
             </div>
+
             <div class="hero-screen-bottom">
               <div class="keyboard">
                 <div class="keyboard-row">
@@ -354,7 +366,7 @@
                   <div class="key">U</div><div class="key">I</div><div class="key">O</div>
                   <div class="key">P</div>
                 </div>
-                <div class="keyboard-row keyboard-row--indented">
+                <div class="keyboard-row">
                   <div class="key">A</div><div class="key">S</div><div class="key">D</div>
                   <div class="key">F</div><div class="key">G</div><div class="key">H</div>
                   <div class="key">J</div><div class="key">K</div><div class="key">L</div>
@@ -366,7 +378,7 @@
                   <div class="key">M</div>
                   <div class="key key--func">⌫</div>
                 </div>
-                <div class="keyboard-row keyboard-row--bottom">
+                <div class="keyboard-row">
                   <div class="key key--func">123</div>
                   <div class="key key--func">🌐</div>
                   <div class="key key--space">space</div>
