@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Native Tone Keyboard</title>
+  <title>BoOMeR TeXt!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -70,7 +70,6 @@
 
     .hero-phone {
       width: 250px;
-      height: 500px;
       border-radius: 36px;
       border: 1px solid var(--border);
       background: #000;
@@ -84,41 +83,53 @@
       flex: 1;
       border-radius: 26px;
       background: var(--screen-bg);
-      padding: 6px 8px 0;
+      padding: 0 8px;
+      padding-top: 0;
       display: flex;
       flex-direction: column;
       font-size: 12px;
       overflow: hidden;
     }
 
-    /* Header with circular contact avatar */
+    /* Header with circular contact avatar, same grey as keyboard */
 
     .hero-header {
+      background: var(--keyboard-bg);
+      border-radius: 26px 26px 0 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 4px 0 8px;
-      border-bottom: 1px solid #e1e1e6;
-      font-size: 11px;
-      color: #555555;
-      font-weight: 500;
+      gap: 4px;
+      padding: 10px 0 8px;
     }
 
     .hero-header-avatar {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: #d1d1d6;
+      background: #d1f7c4; /* light green */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      color: #555555;
+      font-size: 13px;
+      font-weight: 500;
+      color: #2f4f2f;
     }
 
     .hero-header-name {
+      font-size: 11px;
+      color: #555555;
+      font-weight: 500;
       letter-spacing: 0.01em;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0;
+      gap: 6px;
     }
 
     .hero-screen-top {
@@ -126,7 +137,6 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      padding: 8px 0 8px;
     }
 
     .bubble {
@@ -153,14 +163,14 @@
     /* Full-bleed keyboard at bottom of screen */
 
     .hero-screen-bottom {
-      margin: 0 -8px -4px; /* extend to screen edges & bottom */
-      border-top: 1px solid #d7d7dd;
-      padding-top: 4px;
+      margin-top: auto;
+      margin-left: -8px;
+      margin-right: -8px;
     }
 
     .keyboard {
       background: var(--keyboard-bg);
-      border-radius: 0 0 26px 26px; /* match lower screen corners */
+      border-radius: 0 0 26px 26px;
       padding: 6px 6px 10px;
       display: flex;
       flex-direction: column;
@@ -363,43 +373,45 @@
           <div class="hero-screen">
             <div class="hero-header">
               <div class="hero-header-avatar">M</div>
-              <span class="hero-header-name">Mom</span>
+              <div class="hero-header-name">Mom</div>
             </div>
 
-            <div class="hero-screen-top">
-              <div class="bubble bubble-incoming">
-                CALL ME WHEN YOU SEE THIS
+            <div class="hero-content">
+              <div class="hero-screen-top">
+                <div class="bubble bubble-incoming">
+                  CALL ME WHEN YOU SEE THIS
+                </div>
+                <div class="bubble bubble-outgoing">
+                  sURe nO pRObLEm!!
+                </div>
               </div>
-              <div class="bubble bubble-outgoing">
-                sURe nO pRObLEm!!
-              </div>
-            </div>
 
-            <div class="hero-screen-bottom">
-              <div class="keyboard">
-                <div class="keyboard-row">
-                  <div class="key">Q</div><div class="key">W</div><div class="key">E</div>
-                  <div class="key">R</div><div class="key">T</div><div class="key">Y</div>
-                  <div class="key">U</div><div class="key">I</div><div class="key">O</div>
-                  <div class="key">P</div>
-                </div>
-                <div class="keyboard-row">
-                  <div class="key">A</div><div class="key">S</div><div class="key">D</div>
-                  <div class="key">F</div><div class="key">G</div><div class="key">H</div>
-                  <div class="key">J</div><div class="key">K</div><div class="key">L</div>
-                </div>
-                <div class="keyboard-row">
-                  <div class="key key--func">⇧</div>
-                  <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
-                  <div class="key">V</div><div class="key">B</div><div class="key">N</div>
-                  <div class="key">M</div>
-                  <div class="key key--func">⌫</div>
-                </div>
-                <div class="keyboard-row">
-                  <div class="key key--func">123</div>
-                  <div class="key key--func">🌐</div>
-                  <div class="key key--space">space</div>
-                  <div class="key key--func">return</div>
+              <div class="hero-screen-bottom">
+                <div class="keyboard">
+                  <div class="keyboard-row">
+                    <div class="key">Q</div><div class="key">W</div><div class="key">E</div>
+                    <div class="key">R</div><div class="key">T</div><div class="key">Y</div>
+                    <div class="key">U</div><div class="key">I</div><div class="key">O</div>
+                    <div class="key">P</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key">A</div><div class="key">S</div><div class="key">D</div>
+                    <div class="key">F</div><div class="key">G</div><div class="key">H</div>
+                    <div class="key">J</div><div class="key">K</div><div class="key">L</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key key--func">⇧</div>
+                    <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
+                    <div class="key">V</div><div class="key">B</div><div class="key">N</div>
+                    <div class="key">M</div>
+                    <div class="key key--func">⌫</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key key--func">123</div>
+                    <div class="key key--func">🌐</div>
+                    <div class="key key--space">space</div>
+                    <div class="key key--func">return</div>
+                  </div>
                 </div>
               </div>
             </div>
