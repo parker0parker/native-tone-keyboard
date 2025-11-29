@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>native tone keyboard</title>
+  <title>Native Tone Keyboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #111111;
-      --fg: #f5f5f5;
-      --muted: #888888;
-      --border: #444444;
-      --accent: #f5f5f5;
-      --mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --bg: #f4f4f4;
+      --fg: #111111;
+      --muted: #777777;
+      --accent: #111111;
+      --card: #ffffff;
+      --border: #dddddd;
+      --radius-lg: 24px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+                   "SF Pro Text", "Segoe UI", sans-serif;
     }
 
     * {
@@ -20,228 +25,445 @@
 
     body {
       margin: 0;
-      padding: 16px;
+      padding: 32px 16px 48px;
+      font-family: var(--font-sans);
       background: var(--bg);
       color: var(--fg);
-      font-family: var(--mono);
       -webkit-font-smoothing: antialiased;
     }
 
     .page {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
-    .block {
-      border: 1px solid var(--border);
-      padding: 12px 14px;
-      margin-bottom: 12px;
-      white-space: pre-wrap;
-    }
-
-    .headline {
-      border: none;
-      padding: 0;
-      margin-bottom: 8px;
-    }
-
-    .headline-text {
-      font-size: 1rem;
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin: 0 0 12px;
     }
 
     .subline {
+      font-size: 0.98rem;
       color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 14px;
-      border: none;
-      padding: 0;
-      white-space: normal;
+      max-width: 420px;
+      line-height: 1.4;
+      margin-bottom: 24px;
     }
 
-    .ascii-phone {
-      font-size: 0.78rem;
+    /* HERO PHONE WRAPPER */
+
+    .hero-media {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .hero-phone-shell {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px 16px 18px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .hero-phone {
+      width: 260px;
+      height: 520px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: #000;
+      padding: 12px 10px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .hero-screen {
+      flex: 1;
+      border-radius: 22px;
+      background: #fdfdfd;
+      padding: 8px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+    }
+
+    .hero-screen-top {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1 1 auto;
+      padding-bottom: 6px;
+    }
+
+    .bubble {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 14px;
+      max-width: 80%;
       line-height: 1.3;
     }
 
-    .cta-line {
-      margin-top: 6px;
-      border: none;
-      padding: 0;
-      white-space: normal;
+    .bubble-incoming {
+      align-self: flex-start;
+      background: #e5e5ea;
+      color: #000;
+      border-bottom-left-radius: 4px;
+    }
+
+    .bubble-outgoing {
+      align-self: flex-end;
+      background: #007aff;
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .hero-screen-bottom {
+      border-top: 1px solid #e5e5ea;
+      padding-top: 6px;
+      margin-top: 4px;
+    }
+
+    /* SIMPLE KEYBOARD MOCK */
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 10px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      gap: 3px;
+      justify-content: center;
+    }
+
+    .key {
+      padding: 4px 5px;
+      border-radius: 4px;
+      background: #f8f8f8;
+      border: 1px solid #e2e2e2;
+      text-align: center;
+      min-width: 14px;
+    }
+
+    .key-wide {
+      flex: 1;
+    }
+
+    .key-space {
+      flex: 3;
+    }
+
+    .hero-caption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .primary-cta {
+      margin: 22px 0 28px;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 4px;
-      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
       border: 1px solid var(--accent);
-      background: transparent;
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      cursor: pointer;
-    }
-
-    .btn:active {
-      transform: translateY(1px);
-    }
-
-    .list {
+      background: var(--accent);
+      color: #fff;
       font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.12s ease, transform 0.06s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+    }
+
+    .bullets {
+      margin-bottom: 26px;
+      font-size: 0.95rem;
+    }
+
+    .bullets ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .bullets li::before {
+      content: "• ";
+    }
+
+    .demo {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 14px 14px 16px;
+      margin-bottom: 26px;
     }
 
     .demo-label {
+      font-size: 0.86rem;
       color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    .demo-input-wrapper {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 9px 11px;
+      background: #fafafa;
     }
 
     .demo-input {
       width: 100%;
       border: none;
-      outline: none;
       background: transparent;
-      color: var(--fg);
-      font-family: var(--mono);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
     }
 
     .demo-input::placeholder {
-      color: #555555;
+      color: #b0b0b0;
     }
 
     .demo-output {
       margin-top: 8px;
-      border-top: 1px solid var(--border);
-      padding-top: 6px;
-      font-size: 0.9rem;
-      min-height: 1.2em;
+      padding: 10px 11px;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border);
+      background: #ffffff;
+      font-size: 0.95rem;
+      min-height: 40px;
       word-wrap: break-word;
+      white-space: pre-wrap;
     }
 
     .demo-footer {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-top: 6px;
+      justify-content: space-between;
+      margin-top: 8px;
+      gap: 10px;
       font-size: 0.8rem;
       color: var(--muted);
-      gap: 8px;
-    }
-
-    .btn-outline {
-      border-color: var(--border);
-      color: var(--fg);
     }
 
     .copy-status {
-      margin-top: 4px;
       font-size: 0.8rem;
       color: var(--muted);
       min-height: 1em;
+      margin-top: 2px;
+    }
+
+    .use-case {
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .use-case p {
+      margin: 0;
+    }
+
+    .privacy {
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .privacy p {
+      margin: 0 0 4px;
+    }
+
+    .store-badge {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--fg);
+    }
+
+    .store-badge-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #000;
     }
 
     .footer-note {
-      font-size: 0.8rem;
+      margin-top: 10px;
+      font-size: 0.82rem;
       color: var(--muted);
-      margin-top: 6px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       body {
-        padding: 12px;
+        padding-top: 24px;
+      }
+
+      .hero-media {
+        justify-content: center;
+      }
+
+      .hero-phone-shell {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <!-- HEADLINE -->
-    <section class="headline">
-      <div class="headline-text">
-        &gt; It lets you text your relatives back in their native tone.
+    <!-- HERO TEXT -->
+    <section>
+      <h1>It lets you text your relatives back in their native tone.</h1>
+      <p class="subline">
+        A custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
+      </p>
+
+      <!-- HERO PHONE -->
+      <div class="hero-media">
+        <div class="hero-phone-shell">
+          <div class="hero-phone">
+            <div class="hero-screen">
+              <div class="hero-screen-top">
+                <div class="bubble bubble-incoming">
+                  CALL ME WHEN YOU SEE THIS
+                </div>
+                <div class="bubble bubble-outgoing">
+                  oKaY
+                </div>
+              </div>
+              <div class="hero-screen-bottom">
+                <div class="keyboard">
+                  <div class="keyboard-row">
+                    <div class="key">Q</div><div class="key">W</div><div class="key">E</div>
+                    <div class="key">R</div><div class="key">T</div><div class="key">Y</div>
+                    <div class="key">U</div><div class="key">I</div><div class="key">O</div>
+                    <div class="key">P</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key">A</div><div class="key">S</div><div class="key">D</div>
+                    <div class="key">F</div><div class="key">G</div><div class="key">H</div>
+                    <div class="key">J</div><div class="key">K</div><div class="key">L</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key key-wide">⇧</div>
+                    <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
+                    <div class="key">V</div><div class="key">B</div><div class="key">N</div>
+                    <div class="key">M</div>
+                    <div class="key key-wide">⌫</div>
+                  </div>
+                  <div class="keyboard-row">
+                    <div class="key key-wide">123</div>
+                    <div class="key key-wide">🌐</div>
+                    <div class="key key-space">space</div>
+                    <div class="key key-wide">return</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-caption">
+        A calm reply, translated.
+      </div>
+
+      <div class="primary-cta">
+        <button class="btn" type="button">
+          Add the keyboard
+        </button>
       </div>
     </section>
 
-    <section class="subline">
-      a custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
-    </section>
-
-    <!-- ASCII "PHONE" / CHAT MOCK -->
-    <section class="block ascii-phone">
-+----------------------------------+
-|  messages                        |
-|----------------------------------|
-|  MOM:  CALL ME WHEN YOU SEE THIS |
-|                                  |
-|  YOU:  oKaY                      |
-+----------------------------------+
-
-      "a calm reply, translated."
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-line">
-      &gt; install
-      <button class="btn" type="button">add the keyboard</button>
-    </section>
-
     <!-- BULLETS -->
-    <section class="block list">
-- types in mixed case automatically
-- works anywhere you can type
-- turns off instantly
+    <section class="bullets">
+      <ul>
+        <li>Types in mixed case automatically</li>
+        <li>Works anywhere you can type</li>
+        <li>Turns off instantly</li>
+      </ul>
     </section>
 
-    <!-- DEMO -->
-    <section class="block">
-      <div class="demo-label">try it here.</div>
-      &gt; input:
-      <input
-        id="demo-input"
-        class="demo-input"
-        type="text"
-        placeholder="type a calm reply."
-        autocomplete="off"
-      />
-      <div class="demo-output" id="demo-output"></div>
+    <!-- DEMO INPUT -->
+    <section class="demo">
+      <div class="demo-label">Try it here.</div>
+      <div class="demo-input-wrapper">
+        <input
+          id="demo-input"
+          class="demo-input"
+          type="text"
+          placeholder="Type a calm reply."
+          autocomplete="off"
+        />
+      </div>
+      <div id="demo-output" class="demo-output"></div>
       <div class="demo-footer">
-        <button id="copy-btn" class="btn btn-outline" type="button">copy</button>
-        <span>use this text anywhere you paste.</span>
+        <button id="copy-btn" class="btn btn-outline" type="button">
+          Copy
+        </button>
+        <span>Use this text anywhere you paste.</span>
       </div>
       <div id="copy-status" class="copy-status"></div>
     </section>
 
     <!-- USE CASE -->
-    <section class="block list">
-for the family group chat.
-for misunderstood tone.
-for accidental intensity.
-for people who already type like this.
+    <section class="use-case">
+      <p>For the family group chat.</p>
+      <p>For misunderstood tone.</p>
+      <p>For accidental intensity.</p>
+      <p>For people who already type like this.</p>
     </section>
 
     <!-- PRIVACY -->
-    <section class="block list">
-this keyboard does not store what you type.
-it does not transmit your messages.
-it does not learn from you.
-it only changes the letters you send.
+    <section class="privacy">
+      <p>This keyboard does not store what you type.</p>
+      <p>It does not transmit your messages.</p>
+      <p>It does not learn from you.</p>
+      <p>It only changes the letters you send.</p>
     </section>
 
-    <!-- FOOTER / CREDIT -->
-    <section class="block">
-inspired by real family members.
+    <!-- FOOTER -->
+    <section>
+      <p>Inspired by real family members.</p>
 
-[ available on ios ]
+      <div class="store-badge">
+        <div class="store-badge-icon"></div>
+        <span>Available on iOS</span>
+      </div>
 
       <div class="footer-note">
-        a small experiment by asmbly.
+        A small experiment by ASMBLY.
       </div>
     </section>
   </main>
 
   <script>
-    // randomize just the letters in a string
+    // Randomize just the letters in a string
     function randomizeMixedCase(str) {
       let result = "";
       for (let i = 0; i < str.length; i++) {
@@ -261,7 +483,7 @@ inspired by real family members.
     const copyBtn = document.getElementById("copy-btn");
     const copyStatus = document.getElementById("copy-status");
 
-    // update output as the user types
+    // Update output as the user types
     inputEl.addEventListener("input", () => {
       const raw = inputEl.value;
       const transformed = randomizeMixedCase(raw);
@@ -269,19 +491,19 @@ inspired by real family members.
       copyStatus.textContent = "";
     });
 
-    // copy transformed text to clipboard
+    // Copy transformed text to clipboard
     copyBtn.addEventListener("click", async () => {
       const textToCopy = outputEl.textContent || "";
       if (!textToCopy.trim()) {
-        copyStatus.textContent = "nothing to copy yet.";
+        copyStatus.textContent = "Nothing to copy yet.";
         return;
       }
 
       try {
         await navigator.clipboard.writeText(textToCopy);
-        copyStatus.textContent = "copied.";
+        copyStatus.textContent = "Copied.";
       } catch (err) {
-        copyStatus.textContent = "couldn't copy. select and copy manually.";
+        copyStatus.textContent = "Couldn’t copy. Select and copy manually.";
       }
     });
   </script>
