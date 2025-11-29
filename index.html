@@ -6,21 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #0f0f10;
-      --fg: #f2f2f2;
-      --muted: #9a9a9a;
-      --accent: #ffffff;
-      --border: #2a2a2a;
-      --bubble-in: #2c2c2e;
+      --bg: #f5f5f5;
+      --fg: #111111;
+      --muted: #777777;
+      --accent: #111111;
+      --border: #d0d0d0;
+      --screen-bg: #f7f7f8;
+      --bubble-in: #e5e5ea;
       --bubble-out: #0a84ff;
-      --keyboard-bg: #1c1c1e;
-      --key-bg: #2c2c2e;
-      --key-border: #3a3a3c;
+      --keyboard-bg: #d3d4da;
+      --key-bg: #f7f7fb;
+      --key-border: #c8c7cc;
+      --radius-md: 16px;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
                    "SF Pro Text", "Segoe UI", sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -51,30 +55,36 @@
       margin-bottom: 24px;
     }
 
+    /* HERO PHONE */
+
     .hero-media {
       display: flex;
       justify-content: flex-start;
       margin-bottom: 14px;
     }
 
+    /* no white card around phone – just the phone itself */
     .hero-phone {
       width: 250px;
       height: 500px;
       border-radius: 36px;
       border: 1px solid var(--border);
       background: #000;
-      padding: 8px;
+      padding: 10px;
       display: flex;
+      align-items: stretch;
+      justify-content: center;
     }
 
     .hero-screen {
       flex: 1;
-      border-radius: 28px;
-      background: #121212;
+      border-radius: 26px;
+      background: var(--screen-bg);
       padding: 10px 8px 8px;
       display: flex;
       flex-direction: column;
       font-size: 12px;
+      overflow: hidden;
     }
 
     .hero-screen-top {
@@ -95,7 +105,7 @@
     .bubble-incoming {
       align-self: flex-start;
       background: var(--bubble-in);
-      color: var(--fg);
+      color: #000;
       border-bottom-left-radius: 4px;
     }
 
@@ -107,14 +117,15 @@
     }
 
     .hero-screen-bottom {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid #d7d7dd;
       padding-top: 6px;
+      margin-top: 4px;
     }
 
     .keyboard {
       background: var(--keyboard-bg);
-      border-radius: 12px;
-      padding: 4px;
+      border-radius: 10px;
+      padding: 4px 4px 6px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -132,13 +143,20 @@
       background: var(--key-bg);
       border: 1px solid var(--key-border);
       text-align: center;
+      min-width: 14px;
       font-size: 10px;
-      color: var(--fg);
     }
 
-    .key-wide { padding: 5px 10px; }
-    .key-space { flex: 2; }
-    .key-gray { opacity: 0.6; }
+    .key-space {
+      flex: 2;
+      text-transform: lowercase;
+    }
+
+    .key-gray {
+      background: #e1e1e6;
+      border-color: #c8c7cc;
+      color: #555;
+    }
 
     .hero-caption {
       font-size: 0.8rem;
@@ -154,31 +172,52 @@
       padding: 9px 16px;
       border-radius: 999px;
       border: 1px solid var(--accent);
-      background: transparent;
-      color: var(--accent);
+      background: var(--accent);
+      color: #fff;
       font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
     }
 
-    .bullets { margin-bottom: 26px; font-size: 0.95rem; }
-    .bullets ul { list-style: none; padding: 0; margin: 0; }
-    .bullets li::before { content: "• "; }
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+    }
+
+    .bullets {
+      margin-bottom: 26px;
+      font-size: 0.95rem;
+    }
+
+    .bullets ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .bullets li::before {
+      content: "• ";
+    }
 
     .demo {
+      background: #f8f8f8;
+      border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
+      padding: 14px 14px 16px;
       margin-bottom: 26px;
     }
 
-    .demo-label { font-size: 0.86rem; color: var(--muted); margin-bottom: 6px; }
+    .demo-label {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
 
     .demo-input-wrapper {
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       border: 1px solid var(--border);
       padding: 9px 11px;
-      background: #111;
+      background: #ffffff;
     }
 
     .demo-input {
@@ -187,95 +226,151 @@
       background: transparent;
       font-size: 0.95rem;
       outline: none;
+      font-family: inherit;
       color: var(--fg);
+    }
+
+    .demo-input::placeholder {
+      color: #b0b0b0;
     }
 
     .demo-output {
       margin-top: 8px;
       padding: 10px 11px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       border: 1px dashed var(--border);
+      background: #ffffff;
       font-size: 0.95rem;
       min-height: 40px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
     }
 
     .demo-footer {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       margin-top: 8px;
+      gap: 10px;
       font-size: 0.8rem;
       color: var(--muted);
     }
 
-    .copy-status { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+    .copy-status {
+      font-size: 0.8rem;
+      color: var(--muted);
+      min-height: 1em;
+      margin-top: 2px;
+    }
 
-    .use-case, .privacy {
+    .use-case {
       margin-bottom: 22px;
       font-size: 0.95rem;
       line-height: 1.4;
+    }
+
+    .use-case p {
+      margin: 0;
+    }
+
+    .privacy {
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .privacy p {
+      margin: 0 0 4px;
+    }
+
+    .store-badge {
+      font-size: 0.82rem;
+      color: var(--fg);
+      margin-top: 4px;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      font-size: 0.82rem;
       color: var(--muted);
     }
 
-    .store-badge { font-size: 0.82rem; color: var(--fg); }
+    @media (max-width: 640px) {
+      body {
+        padding-top: 24px;
+      }
 
-    .footer-note {
-      margin-top: 10px;
-      font-size: 0.82rem;
-      color: var(--muted);
+      .hero-media {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <h1>Lets you text your relatives back in their native tone.</h1>
-    <p class="subline">
-      A custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
-    </p>
+    <!-- HERO TEXT -->
+    <section>
+      <h1>Lets you text your relatives back in their native tone.</h1>
+      <p class="subline">
+        A custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
+      </p>
 
-    <div class="hero-media">
-      <div class="hero-phone">
-        <div class="hero-screen">
-          <div class="hero-screen-top">
-            <div class="bubble bubble-incoming">CALL ME WHEN YOU SEE THIS</div>
-            <div class="bubble bubble-outgoing">sURe nO pRObLEm!!</div>
-          </div>
-
-          <div class="hero-screen-bottom">
-            <div class="keyboard">
-              <div class="keyboard-row">
-                <div class="key">Q</div><div class="key">W</div><div class="key">E</div>
-                <div class="key">R</div><div class="key">T</div><div class="key">Y</div>
-                <div class="key">U</div><div class="key">I</div><div class="key">O</div>
-                <div class="key">P</div>
+      <!-- HERO PHONE (no white card behind it) -->
+      <div class="hero-media">
+        <div class="hero-phone">
+          <div class="hero-screen">
+            <div class="hero-screen-top">
+              <div class="bubble bubble-incoming">
+                CALL ME WHEN YOU SEE THIS
               </div>
-              <div class="keyboard-row">
-                <div class="key">A</div><div class="key">S</div><div class="key">D</div>
-                <div class="key">F</div><div class="key">G</div><div class="key">H</div>
-                <div class="key">J</div><div class="key">K</div><div class="key">L</div>
+              <div class="bubble bubble-outgoing">
+                sURe nO pRObLEm!!
               </div>
-              <div class="keyboard-row">
-                <div class="key key-gray">⇧</div>
-                <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
-                <div class="key">V</div><div class="key">B</div><div class="key">N</div>
-                <div class="key key-gray">⌫</div>
-              </div>
-              <div class="keyboard-row">
-                <div class="key key-gray">123</div>
-                <div class="key key-space">space</div>
-                <div class="key key-gray">return</div>
+            </div>
+            <div class="hero-screen-bottom">
+              <div class="keyboard">
+                <div class="keyboard-row">
+                  <div class="key">Q</div><div class="key">W</div><div class="key">E</div>
+                  <div class="key">R</div><div class="key">T</div><div class="key">Y</div>
+                  <div class="key">U</div><div class="key">I</div><div class="key">O</div>
+                  <div class="key">P</div>
+                </div>
+                <div class="keyboard-row">
+                  <div class="key">A</div><div class="key">S</div><div class="key">D</div>
+                  <div class="key">F</div><div class="key">G</div><div class="key">H</div>
+                  <div class="key">J</div><div class="key">K</div><div class="key">L</div>
+                </div>
+                <div class="keyboard-row">
+                  <div class="key key-gray">⇧</div>
+                  <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
+                  <div class="key">V</div><div class="key">B</div><div class="key">N</div>
+                  <div class="key">M</div>
+                  <div class="key key-gray">⌫</div>
+                </div>
+                <div class="keyboard-row">
+                  <div class="key key-gray">123</div>
+                  <div class="key key-space">space</div>
+                  <div class="key key-gray">return</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="hero-caption">A calm reply, translated.</div>
+      <div class="hero-caption">
+        A calm reply, translated.
+      </div>
 
-    <div class="primary-cta">
-      <button class="btn">Add the keyboard</button>
-    </div>
+      <div class="primary-cta">
+        <button class="btn" type="button">
+          Add the keyboard
+        </button>
+      </div>
+    </section>
 
+    <!-- BULLETS -->
     <section class="bullets">
       <ul>
         <li>Types in mixed case automatically</li>
@@ -284,6 +379,29 @@
       </ul>
     </section>
 
+    <!-- DEMO INPUT -->
+    <section class="demo">
+      <div class="demo-label">Try it here.</div>
+      <div class="demo-input-wrapper">
+        <input
+          id="demo-input"
+          class="demo-input"
+          type="text"
+          placeholder="Type a calm reply."
+          autocomplete="off"
+        />
+      </div>
+      <div id="demo-output" class="demo-output"></div>
+      <div class="demo-footer">
+        <button id="copy-btn" class="btn btn-outline" type="button">
+          Copy
+        </button>
+        <span>Use this text anywhere you paste.</span>
+      </div>
+      <div id="copy-status" class="copy-status"></div>
+    </section>
+
+    <!-- USE CASE -->
     <section class="use-case">
       <p>For the family group chat.</p>
       <p>For misunderstood tone.</p>
@@ -291,6 +409,7 @@
       <p>For people who already type like this.</p>
     </section>
 
+    <!-- PRIVACY -->
     <section class="privacy">
       <p>This keyboard does not store what you type.</p>
       <p>It does not transmit your messages.</p>
@@ -298,8 +417,54 @@
       <p>It only changes the letters you send.</p>
     </section>
 
-    <div class="store-badge">Available on iOS</div>
-    <div class="footer-note">A small experiment by ASMBLY.</div>
+    <!-- FOOTER -->
+    <section>
+      <div class="store-badge">Available on iOS</div>
+      <div class="footer-note">A small experiment by ASMBLY.</div>
+    </section>
   </main>
+
+  <script>
+    // Randomize just the letters in a string
+    function randomizeMixedCase(str) {
+      let result = "";
+      for (let i = 0; i < str.length; i++) {
+        const ch = str[i];
+        if (/[a-zA-Z]/.test(ch)) {
+          const upper = Math.random() < 0.5;
+          result += upper ? ch.toUpperCase() : ch.toLowerCase();
+        } else {
+          result += ch;
+        }
+      }
+      return result;
+    }
+
+    const inputEl = document.getElementById("demo-input");
+    const outputEl = document.getElementById("demo-output");
+    const copyBtn = document.getElementById("copy-btn");
+    const copyStatus = document.getElementById("copy-status");
+
+    inputEl.addEventListener("input", () => {
+      const raw = inputEl.value;
+      const transformed = randomizeMixedCase(raw);
+      outputEl.textContent = transformed;
+      copyStatus.textContent = "";
+    });
+
+    copyBtn.addEventListener("click", async () => {
+      const textToCopy = outputEl.textContent || "";
+      if (!textToCopy.trim()) {
+        copyStatus.textContent = "Nothing to copy yet.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        copyStatus.textContent = "Copied.";
+      } catch (err) {
+        copyStatus.textContent = "Couldn’t copy. Select and copy manually.";
+      }
+    });
+  </script>
 </body>
 </html>
