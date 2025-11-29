@@ -12,11 +12,16 @@
       --accent: #111111;
       --border: #d0d0d0;
       --screen-bg: #f7f7f8;
+
       --bubble-in: #e5e5ea;
       --bubble-out: #0a84ff;
-      --keyboard-bg: #d3d4da;
-      --key-bg: #f7f7fb;
-      --key-border: #c8c7cc;
+
+      --keyboard-bg: #d0d1d6;
+      --key-bg: #fdfdfd;
+      --key-border: #c7c7cc;
+      --key-func-bg: #b7bac1;
+      --key-func-fg: #ffffff;
+
       --radius-md: 16px;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
                    "SF Pro Text", "Segoe UI", sans-serif;
@@ -63,7 +68,6 @@
       margin-bottom: 14px;
     }
 
-    /* no white card around phone – just the phone itself */
     .hero-phone {
       width: 250px;
       height: 500px;
@@ -122,10 +126,12 @@
       margin-top: 4px;
     }
 
+    /* UPDATED iOS-style keyboard */
+
     .keyboard {
       background: var(--keyboard-bg);
-      border-radius: 10px;
-      padding: 4px 4px 6px;
+      border-radius: 14px;
+      padding: 6px 6px 8px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -137,25 +143,37 @@
       justify-content: center;
     }
 
+    .keyboard-row--indented {
+      padding-left: 10px; /* fake stagger for middle row */
+    }
+
+    .keyboard-row--bottom {
+      padding: 0 4px;
+    }
+
     .key {
-      padding: 5px 6px;
-      border-radius: 8px;
+      padding: 5px 7px;
+      border-radius: 9px;
       background: var(--key-bg);
       border: 1px solid var(--key-border);
       text-align: center;
-      min-width: 14px;
+      min-width: 16px;
       font-size: 10px;
+      color: var(--fg);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
-    .key-space {
-      flex: 2;
+    .key--func {
+      background: var(--key-func-bg);
+      border-color: var(--key-func-bg);
+      color: var(--key-func-fg);
+      box-shadow: none;
+      font-size: 9px;
+    }
+
+    .key--space {
+      flex: 2.3;
       text-transform: lowercase;
-    }
-
-    .key-gray {
-      background: #e1e1e6;
-      border-color: #c8c7cc;
-      color: #555;
     }
 
     .hero-caption {
@@ -316,7 +334,7 @@
         A custom keyboard for family group chats, misunderstood intent, and aggressive punctuation.
       </p>
 
-      <!-- HERO PHONE (no white card behind it) -->
+      <!-- HERO PHONE -->
       <div class="hero-media">
         <div class="hero-phone">
           <div class="hero-screen">
@@ -336,22 +354,23 @@
                   <div class="key">U</div><div class="key">I</div><div class="key">O</div>
                   <div class="key">P</div>
                 </div>
-                <div class="keyboard-row">
+                <div class="keyboard-row keyboard-row--indented">
                   <div class="key">A</div><div class="key">S</div><div class="key">D</div>
                   <div class="key">F</div><div class="key">G</div><div class="key">H</div>
                   <div class="key">J</div><div class="key">K</div><div class="key">L</div>
                 </div>
                 <div class="keyboard-row">
-                  <div class="key key-gray">⇧</div>
+                  <div class="key key--func">⇧</div>
                   <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
                   <div class="key">V</div><div class="key">B</div><div class="key">N</div>
                   <div class="key">M</div>
-                  <div class="key key-gray">⌫</div>
+                  <div class="key key--func">⌫</div>
                 </div>
-                <div class="keyboard-row">
-                  <div class="key key-gray">123</div>
-                  <div class="key key-space">space</div>
-                  <div class="key key-gray">return</div>
+                <div class="keyboard-row keyboard-row--bottom">
+                  <div class="key key--func">123</div>
+                  <div class="key key--func">🌐</div>
+                  <div class="key key--space">space</div>
+                  <div class="key key--func">return</div>
                 </div>
               </div>
             </div>
